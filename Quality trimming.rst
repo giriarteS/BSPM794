@@ -70,6 +70,8 @@ This uses the khmer script ‘split-paired-reads’ to break the reads into left
 
 **Look at data quality using FastQC**:
 
+::
+
    mkdir ../fastqc
    fastqc s1_* s2_* ../fastqc 
 
