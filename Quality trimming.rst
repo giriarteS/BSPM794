@@ -109,4 +109,3 @@ Let’s run FastQC on things again:
 
    fastqc combined-trim2.fq combined-trim30.fq s1_se2.filt s1_se30.filt -o ../fastqc
 	
---------------
