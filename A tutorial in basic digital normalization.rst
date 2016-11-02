@@ -10,7 +10,7 @@ First, do a first round of digital normalization to C=20
 
    mkdir Assembly/diginorm
    cd Assembly/diginorm
-   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 20 -k 20 -N 4 -x 2.5e8 --savehash ecoli_ref.kh ../reads/ecoli_ref_5m.fastq.gz
+   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 20 -k 20 -N 4 -x 2.5e8 -p --savegraph ecoli_ref.kh -o khmer_normalized.fq ../trimming/combined-trim2.fq
  
 (wait a while...) ...this should eliminate about 2/3 of the data.
  
@@ -32,4 +32,17 @@ Finally, do the second round of normalization to C=5
 
 And voila – the sequences to assemble are in ‘ecoli_ref.fq.gz.keep.abundfilt.keep’, in FASTA format. See Short Read Assembly with Velvet.
 
-If you want to split into paired and orphan reads, do:
+
+**Run jellyfish on normalized data**
+
+::
+
+   jellyfish count -m 25 -s 200M -t 8 -C -o trim2-D.jf ecoli_ref.fq.gz.keep.abundfilt.keep
+   jellyfish histo trim2-D.jf -o trim2.histo
+
+
+
+
+
+
+
