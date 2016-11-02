@@ -3,7 +3,7 @@ Quality Trimming
 ================================================
 
 During this lab, we will acquaint ourselves with the software packages
-Trimmomatic, khmer and Jellyfish. Your objectives are:
+Trimmomatic, khmer, FastQC and FASTX Toolkit. Your objectives are:
 
 1. Familiarize yourself with software, how to execute it and optionally how to
    visualize results.
@@ -11,9 +11,11 @@ Trimmomatic, khmer and Jellyfish. Your objectives are:
 
 The Trimmomatoc manual: http://www.usadellab.org/cms/?page=trimmomatic
 
-The JellyFish manual: http://www.genome.umd.edu/jellyfish.html
-
 The Khmer webpage: http://khmer.readthedocs.org/en/v2.0/
+
+The FastQC webpage: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+The FASTX Toolkit webpage: http://hannonlab.cshl.edu/fastx_toolkit/commandline.html
 
 --------------
 
@@ -108,60 +110,3 @@ Let’s run FastQC on things again:
    fastqc combined-trim2.fq combined-trim30.fq s1_se2.filt s1_se30.filt -o ../fastqc
 	
 --------------
-
-**Run khmer and Jellyfish**
-
-::
-
-  mkdir ../jelly
-  cd ../jelly
-
-
-  jellyfish count -m 25 -s 200M -t 8 -C -o trim2.jf ../trimming/combined-trim2.fq
-  jellyfish histo trim2.jf -o trim2.histo
-
-  #and
-
-  jellyfish count -m 25 -s 200M -t 8 -C -o trim30.jf ../trimming/combined-trim30.fq
-  jellyfish histo trim30.jf -o trim30.histo
-  
---------------
-
-**Look at the 2 histograms**
-
-::
-
-  head *histo
-  
-  
-Open up a new terminal window using the buttons command-t
-
-::
-   
-   scp -r your_username@IP_address:/Volumes/Pegasus/your_home_folder/Assembly/jelly/*histo .
-   
-   #or transfer the histograms using cyberduck 
-
---------------
-
-**OPEN RSTUDIO**: Import and visualize the 2 histogram datasets on your computer. 
-
-::
-
-   trim2 <- read.table("~/Desktop/trim2.histo", quote="\"")
-   trim30 <- read.table("~/Desktop/trim30.histo", quote="\"")
-
-   #Plot: Make sure and change the names to match what you import.
-   #What does this plot show you?? 
-
-   barplot(c(trim2$V2[1],trim30$V2[1]),
-   names=c('Phred2', 'Phred30'),
-   main='Number of unique kmers')
-
-   # plot differences between non-unique kmers
-
-   plot(trim2$V2[2:30] - trim30$V2[2:30], type='l',
-   xlim=c(1,5), xaxs="i", yaxs="i", frame.plot=F,
-   ylim=c(0,20000000), col='red', xlab='kmer frequency',
-   lwd=4, ylab='count',
-   main='Diff in 25mer counts of freq 1 to 5 \n Phred2 vs. Phred30')
