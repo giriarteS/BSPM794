@@ -27,9 +27,9 @@ Count k-mer occurence
 
 ::
 
-  mkdir ../jelly
-  cd ../jelly
-  jellyfish count -m 25 -s 200M -t 8 -C -o trim2.jf ../trimming/combined-trim2.fq
+  mkdir jelly
+  cd jelly
+  jellyfish count -m 25 -s 200M -t 8 -C -o ecoli.jf ../trimming/combined.fq
 
 
 -t 8      
@@ -44,7 +44,7 @@ Count k-mer occurence
 -s 200M   
       is some kind of magical number specification of hash size. This should be as high as the physical memory allows. The higher the faster, but exceeding the available memory leads to failure or extremely slow counting.
 
--o trim2.jf  
+-o ecoli.jf  
       output file name.
 
 
@@ -52,7 +52,7 @@ Summarize as histogram
 
 ::
 
-   jellyfish histo trim2.jf -o trim2.histo
+   jellyfish histo ecoli.jf -o ecoli.histo
 
    
 Confirm that you got the output
@@ -82,7 +82,7 @@ Open up a new terminal window using the buttons command-t
 
 ::
 
-   trim2 <- read.table("~/Desktop/trim2.histo", quote="\"")
+   ecoli <- read.table("~/Desktop/ecoli.histo", quote="\"")
    
    #Plot: Make sure and change the names to match what you import.
    
@@ -91,7 +91,7 @@ This will plot from 5 th line in the histo file. In general, the very low freque
 
 ::
 
-   plot(trim2[5:680,],type="l")
+   plot(ecoli[5:680,],type="l")
    
 **Determine the total number of k-mer analyzed and the peak position**
 
@@ -101,13 +101,13 @@ First, you should determine the border between the peak corresponding to single 
 
 ::
 
-   points(trim2[5:680,])
+   points(ecoli[5:680,])
    
 Now, we would calculate the total number of k-mer in the distribution
 
 ::
 
-   sum(as.numeric(trim2[5:680,1]*trim2[5:680,2]))
+   sum(as.numeric(ecoli[5:680,1]*ecoli[5:680,2]))
 
 
 Next, we want to know the peak position. From the graph, we can see its close to 40. Thus we examine the number close to 50 and find the maximum value
