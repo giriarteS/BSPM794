@@ -10,7 +10,7 @@ First, do a first round of digital normalization to C=20
 
    mkdir Assembly/diginorm
    cd Assembly/diginorm
-   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 20 -k 20 -N 4 -x 2.5e8 -p --savegraph ecoli_ref.kh -o khmer_normalized.fq ../trimming/combined-trim2.fq
+   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 20 -k 20 -N 4 -x 2.5e8 -p --savegraph ecoli_ref.kh -o khmer_normalized.fq.keep ../trimming/combined-trim2.fq
  
 (wait a while...) ...this should eliminate about 2/3 of the data.
  
@@ -18,7 +18,7 @@ Next, trim low-abundance k-mers
 
 ::
 
-   /Users/BrodersLab/khmerEnv/bin/filter-abund.py ecoli_ref.kh ecoli_ref_5m.fq.gz.keep
+   /Users/BrodersLab/khmerEnv/bin/filter-abund.py ecoli_ref.kh khmer_normalized.fq.keep
    
 (wait a while...) ...this should get rid of another 25% or so.
 
