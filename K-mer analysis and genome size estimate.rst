@@ -91,7 +91,7 @@ This will plot from 5 th line in the histo file. In general, the very low freque
 
 ::
 
-   plot(ecoli[5:680,],type="l")
+   plot(ecoli[5:970,],type="l")
    
 **Determine the total number of k-mer analyzed and the peak position**
 
@@ -101,47 +101,48 @@ First, you should determine the border between the peak corresponding to single 
 
 ::
 
-   points(ecoli[5:680,])
+   points(ecoli[5:970,])
    
 Now, we would calculate the total number of k-mer in the distribution
 
 ::
 
-   sum(as.numeric(ecoli[5:680,1]*ecoli[5:680,2]))
+   sum(as.numeric(ecoli[5:970,1]*ecoli[5:970,2]))
 
+   #[1] 297962900
 
-Next, we want to know the peak position. From the graph, we can see its close to 40. Thus we examine the number close to 50 and find the maximum value
-
-::
-
-   plot(trim2[10:100,],type="l")
-   points(trim2[10:100,])
-
-
-In this example, the peak is at 46. Then, the genome size can be estimated as:
+Next, we want to know the peak position. From the graph, we can see its close to 70. Thus we examine the number close to 70 and find the maximum value
 
 ::
 
-   sum(as.numeric(trim2[5:680,1]*trim2[5:680,2]))/46
+   plot(ecoli[5:200,],type="l")
+   points(ecoli[5:200,])
+
+
+In this example, the peak is at 66. Then, the genome size can be estimated as:
+
+::
+
+   sum(as.numeric(ecoli[5:970,1]*ecoli[5:970,2]))/66
    
-   #[1] 4657590  --  4.6 MB
+   #[1] 4514589  --  4.5 Mb
    
    
 The size of single copy region can be roughly calculated as
 
 ::
 
-   sum(as.numeric(trim2[30:70,1]*trim2[30:70,2]))/46
+   sum(as.numeric(ecoli[30:100,1]*ecoli[30:100,2]))/66
    
-   #[1] 4409009
+   #[1] 4293674
 
-It is 4.4 Mb or 0.94% of the genome. The proportion could be calculated as:  
+It is 4.2 Mb or 0.95% of the genome. The proportion could be calculated as:  
 
 ::
 
-  (sum(as.numeric(trim2[30:70,1]*trim2[30:70,2]))/sum(as.numeric(trim2[5:672,1]*trim2[5:672,2])))
+  (sum(as.numeric(ecoli[30:100,1]*ecoli[30:100,2]))/sum(as.numeric(ecoli[5:970,1]*ecoli[5:970,2])))
   
-  #[1] 0.9467376
+  #[1] 0.9510664
   
 
 **Compare the peak shape with poisson distribution**
@@ -152,7 +153,6 @@ Now that we have some nice curve, we could compare it to ideal curve as poisson 
 
 ::
 
-   singleC <- sum(as.numeric(trim2[30:70,1]*trim2[30:70,2]))/46
-   plot(1:100,dpois(1:100, 46)*singleC, type = "l", col=3, lty=2)
-   lines(trim2[1:100,],type="l")
-   
+   singleC <- sum(as.numeric(ecoli[30:100,1]*ecoli[30:100,2]))/66
+   plot(5:200,dpois(5:200, 66)*singleC, type = "l", col=3, lty=2)
+   lines(ecoli[5:200,],type="l")
