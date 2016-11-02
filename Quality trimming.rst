@@ -51,6 +51,34 @@ This uses the khmer script ‘split-paired-reads’ to break the reads into left
 	
 --------------
 
+**Testing your knowledge**
+
+There are two FASTQ files for this one lane of paired-end Illumina data: one file for the forward reads and one file for the reverse reads. Look at the first few reads.
+
+::
+
+   gunzip -c ecoli_ref-5m_s1.fq | head
+   
+   
+How long are the reads? (hint: use awk '{print length}')
+
+
+How many lines are there in both files? (hint: use wc -l)
+
+   
+How many lines per read?
+
+
+How many reads are there in both files?
+
+
+How many bases are sequenced?
+
+
+BONUS!! Assuming the genome is 4.5 Mbp, what is the depth of coverage?
+
+--------------
+
 **Eliminate illumina adapters from your sequences**
 
 ::
