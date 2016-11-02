@@ -57,7 +57,7 @@ There are two FASTQ files for this one lane of paired-end Illumina data: one fil
 
 ::
 
-   gunzip -c ecoli_ref-5m_s1.fq | head
+   head ecoli_ref-5m_s1.fq 
    
    
 How long are the reads? (hint: use awk '{print length}')
