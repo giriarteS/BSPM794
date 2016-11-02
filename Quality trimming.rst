@@ -25,7 +25,7 @@ bacterial genomes from short-read data sets, Chitsaz et al., 2011
 
    mkdir Assembly
    mkdir Assembly/reads 
-   cd /Assembly/reads/
+   cd /Assembly/reads
    wget https://s3.amazonaws.com/public.ged.msu.edu/ecoli_ref-5m.fastq.gz
    gunzip -c ecoli_ref-5m.fastq.gz | less
    
@@ -75,7 +75,7 @@ This uses the khmer script ‘split-paired-reads’ to break the reads into left
    mkdir ../fastqc
    fastqc s1_* s2_* ../fastqc 
 
-Go check it out on your local computer
+Go check it out on your computer. Open up a new terminal window using the buttons command-t
 
 ::
 
@@ -88,21 +88,80 @@ It looks like a lot of bad data is present after base 70, so let’s just trim a
 
 ::
 
-   interleave-reads.py s1_pe s2_pe > combined.fq 
+   /Users/BrodersLab/khmerEnv/bin/interleave-reads.py s1_pe s2_pe > combined.fq 
     
 
 Now, let’s use the FASTX toolkit to trim off bases over 70, and eliminate low-quality sequences. We need to do this both for our combined/paired files and our remaining single-ended files:
 
 ::
 
-   fastx_trimmer -Q33 -l 70 -i combined.fq | fastq_quality_filter -Q33 -q 30 -p 50 > combined-trim.fq
-
-   fastx_trimmer -Q33 -l 70 -i s1_se | fastq_quality_filter -Q33 -q 30 -p 50 > s1_se.filt
+   fastx_trimmer -Q33 -l 70 -i combined.fq | fastq_quality_filter -Q33 -q 2 -p 50 > combined-trim2.fq
+   fastx_trimmer -Q33 -l 70 -i combined.fq | fastq_quality_filter -Q33 -q 30 -p 50 > combined-trim30.fq
+   fastx_trimmer -Q33 -l 70 -i s1_se | fastq_quality_filter -Q33 -q 2 -p 50 > s1_se2.filt
+   fastx_trimmer -Q33 -l 70 -i s1_se | fastq_quality_filter -Q33 -q 30 -p 50 > s1_se30.filt
     
     
 Let’s run FastQC on things again:
 
 ::
 
-   fastqc combined-trim.fq s1_se.filt -o ../fastqc
+   fastqc combined-trim2.fq combined-trim30.fq s1_se2.filt s1_se30.filt -o ../fastqc
 	
+--------------
+
+**Run khmer and Jellyfish**
+
+::
+
+  mkdir ../jelly
+  cd ../jelly
+
+
+  jellyfish count -m 25 -s 200M -t 8 -C -o trim2.jf ../trimming/combined-trim2.fq
+  jellyfish histo trim2.jf -o trim2.histo
+
+  #and
+
+  jellyfish count -m 25 -s 200M -t 8 -C -o trim30.jf ../trimming/combined-trim30.fq
+  jellyfish histo trim30.jf -o trim30.histo
+  
+--------------
+
+**Look at the 2 histograms**
+
+::
+
+  head *histo
+  
+  
+Open up a new terminal window using the buttons command-t
+
+::
+   
+   scp -r your_username@IP_address:/Volumes/Pegasus/your_home_folder/Assembly/jelly/*histo .
+   
+   #or transfer the histograms using cyberduck 
+
+--------------
+
+**OPEN RSTUDIO**: Import and visualize the 2 histogram datasets on your computer. 
+
+::
+
+   trim2 <- read.table("~/Desktop/trim2.histo", quote="\"")
+   trim30 <- read.table("~/Desktop/trim30.histo", quote="\"")
+
+   #Plot: Make sure and change the names to match what you import.
+   #What does this plot show you?? 
+
+   barplot(c(trim2$V2[1],trim30$V2[1]),
+   names=c('Phred2', 'Phred30'),
+   main='Number of unique kmers')
+
+   # plot differences between non-unique kmers
+
+   plot(trim2$V2[2:30] - trim30$V2[2:30], type='l',
+   xlim=c(1,5), xaxs="i", yaxs="i", frame.plot=F,
+   ylim=c(0,20000000), col='red', xlab='kmer frequency',
+   lwd=4, ylab='count',
+   main='Diff in 25mer counts of freq 1 to 5 \n Phred2 vs. Phred30')
