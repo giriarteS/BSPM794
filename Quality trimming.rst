@@ -94,16 +94,18 @@ BONUS!! Assuming the genome is 4.5 Mbp, what is the depth of coverage?
    ../reads/ecoli_ref-5m_s1.fq \
    ../reads/ecoli_ref-5m_s2.fq \
    s1_pe s1_se s2_pe s2_se \
-   ILLUMINACLIP:../reads/illuminaClipping.fa:2:30:10 
-
+   ILLUMINACLIP:../reads/illuminaClipping.fa:2:30:10 \
+   LEADING:3 \
+   TRAILING:3 \
+   SLIDINGWINDOW:4:15 \
+   MINLEN:50 
 --------------
 
 **Look at data quality using FastQC**:
 
 ::
 
-   mkdir ../fastqc
-   fastqc s1_* s2_* ../fastqc 
+   fastqc s1_* s2_* 
 
 Go check it out on your computer. Open up a new terminal window using the buttons command-t
 
@@ -114,26 +116,10 @@ Go check it out on your computer. Open up a new terminal window using the button
    #or transfer the fastqc folder using cyberduck
 
 
-It looks like a lot of bad data is present after base 70, so let’s just trim all the sequences that way. Before we do that, we want to interleave the reads again:
+Now, we want to interleave the reads again:
 
 ::
 
    /Users/BrodersLab/khmerEnv/bin/interleave-reads.py s1_pe s2_pe > combined.fq 
     
-
-Now, let’s use the FASTX toolkit to trim off bases over 70, and eliminate low-quality sequences. We need to do this both for our combined/paired files and our remaining single-ended files:
-
-::
-
-   fastx_trimmer -Q33 -l 70 -i combined.fq | fastq_quality_filter -Q33 -q 2 -p 50 > combined-trim2.fq
-   fastx_trimmer -Q33 -l 70 -i combined.fq | fastq_quality_filter -Q33 -q 30 -p 50 > combined-trim30.fq
-   fastx_trimmer -Q33 -l 70 -i s1_se | fastq_quality_filter -Q33 -q 2 -p 50 > s1_se2.filt
-   fastx_trimmer -Q33 -l 70 -i s1_se | fastq_quality_filter -Q33 -q 30 -p 50 > s1_se30.filt
-    
-    
-Let’s run FastQC on things again:
-
-::
-
-   fastqc combined-trim2.fq combined-trim30.fq s1_se2.filt s1_se30.filt -o ../fastqc
 	
