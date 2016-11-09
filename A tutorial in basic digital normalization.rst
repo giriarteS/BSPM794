@@ -37,7 +37,8 @@ And voila – the sequences to assemble are in ‘ecoli_ref.fq.keep.abundfilt.ke
 
 ::
 
-   jellyfish count -m 25 -s 200M -t 8 -C -o ecoli_ref.D.jf ecoli_ref.fq.keep.abundfilt.keep
+   jellyfish count -m 25 -s 200M -t 8 -C -o ../jelly/ecoli_ref.D.jf ecoli_ref.fq.keep.abundfilt.keep
+   cd ../jelly
    jellyfish histo ecoli_ref.D.jf -o ecoli_ref.D.histo
 
 
