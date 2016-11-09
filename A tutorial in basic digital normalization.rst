@@ -18,7 +18,7 @@ Next, trim low-abundance k-mers
 
 ::
 
-   Users/BrodersLab/khmerEnv/bin/filter-abund.py ecoli_ref.kh ecoli_ref.fq.keep -o ecoli_ref.fq.keep.abundfilt
+   /Users/BrodersLab/khmerEnv/bin/filter-abund.py ecoli_ref.kh ecoli_ref.fq.keep -o ecoli_ref.fq.keep.abundfilt
    
 (wait a while...) ...this should get rid of another 1% or so.
 
