@@ -121,7 +121,7 @@ Split reads
             --max-n 0 --minimum-length 50 -q 3,3 \
             -a GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG \
             -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
-            -o ecoli_ref-5m.1.trimmed.fq -p ecoli_ref-5m.2.trimmed.fq \
+            -o ecoli_ref-5m.1.trim.fq -p ecoli_ref-5m.2.trim.fq \
             ../reads/ecoli_ref-5m_s1.fq ../reads/ecoli_ref-5m_s2.fq
 
 Interleaved reads
@@ -132,7 +132,7 @@ Interleaved reads
            --max-n 0 --minimum-length 50 -q 3 \
            -a GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG \
            -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
-           -o ecoli_ref-5m.trimmed.fq ../reads/ecoli_ref-5m.fastq.gz
+           -o ecoli_ref-5m.trim.fq ../reads/ecoli_ref-5m.fastq.gz
 	   
 --------------
 
