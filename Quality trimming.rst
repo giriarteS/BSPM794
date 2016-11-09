@@ -60,20 +60,45 @@ There are two FASTQ files for this one lane of paired-end Illumina data: one fil
    
 How long are the reads? (hint: use awk '{print length}')
 
+::
+
+   awk '{if(NR%4==2) print length}' ecoli_ref-5m_s1.fq | gsort | guniq -c
+   # 2500000 100
 
 How many lines are there in both files? (hint: use wc -l)
 
+::
+
+   cat *.fq | wc -l
+   # 20,000,000 lines
    
 How many lines per read?
 
+::
+
+   4 lines per read
+   
 
 How many reads are there in both files?
 
+::
+
+   20000000 / 4 = 5,000,000 reads
+   
 
 How many bases are sequenced?
 
+::
+
+   5000000 * 100 = 500,000,000 bp
+   
 
 BONUS!! Assuming the genome is 4.5 Mbp, what is the depth of coverage?
+
+::
+
+   500000000 / 4500000 = 111.111 fold coverage
+
 
 --------------
 
