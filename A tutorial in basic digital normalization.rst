@@ -40,12 +40,34 @@ And voila – the sequences to assemble are in ‘ecoli_ref.fq.keep.abundfilt.ke
    jellyfish count -m 25 -s 200M -t 8 -C -o ../jelly/ecoli_ref.D.jf ecoli_ref.fq.keep.abundfilt.keep
    cd ../jelly
    jellyfish histo ecoli_ref.D.jf -o ecoli_ref.D.histo
-   
 
 
+**OPEN RSTUDIO**: Import and visualize the histogram dataset on your computer.
+
+::
+
+Import all 3 histogram datasets: raw, trimmed and normalized
+
+Plot: Make sure and change the names to match what you import.
+
+What does this plot show you?? 
+
+::
+
+barplot(c(ecoli_raw$V2[1],ecoli_trim$V2[1],ecoli_norm$V2[1]),
+    names=c('raw', 'trim', 'norm'),
+    main='Number of unique kmers')
 
 
+Plot differences between non-unique kmers
 
+::
+
+plot(ecoli_raw$V2[2:30] - ecoli_trim$V2[2:30], type='l',
+    xlim=c(2,20), xaxs="i", yaxs="i", frame.plot=F,
+    ylim=c(0,2000000), col='red', xlab='kmer frequency',
+    lwd=4, ylab='count',
+    main='Diff in 25mer counts of freq 2 to 30 \n raw vs. trimmed')
 
 
 
