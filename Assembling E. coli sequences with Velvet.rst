@@ -29,9 +29,9 @@ we will set the required parameter k=21::
 
 Also try assembling with k=23 and k=25::
 
-   velveth ecoli.23 23 -shortPaired -fasta.gz ecoli-reads-5m-dn-paired.fa.gz
+   velveth ecoli.23 23 -shortPaired -fastq ecoli_ref-5m.D.fq
    velvetg ecoli.23 -exp_cov auto
 
-   velveth ecoli.25 25 -shortPaired -fasta.gz ecoli-reads-5m-dn-paired.fa.gz
+   velveth ecoli.25 25 -shortPaired -fastq ecoli_ref-5m.D.fq
    velvetg ecoli.25 -exp_cov auto
 
