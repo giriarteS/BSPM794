@@ -27,9 +27,10 @@ Count k-mer occurence
 
 ::
 
+  cd
   mkdir jelly
   cd jelly
-  jellyfish count -m 25 -s 200M -t 8 -C -o ecoli.jf ../trimming/combined.fq
+  jellyfish count -m 25 -s 200M -t 8 -C -o ecoli.jf ../trimming/ecoli_ref-5m.trimmed.fq
 
 
 -t 8      
