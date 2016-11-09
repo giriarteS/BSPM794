@@ -20,7 +20,7 @@ Next, trim low-abundance k-mers
 
    Users/BrodersLab/khmerEnv/bin/filter-abund.py ecoli_ref.kh ecoli_ref.fq.keep -o ecoli_ref.fq.keep.abundfilt
    
-(wait a while...) ...this should get rid of another 25% or so.
+(wait a while...) ...this should get rid of another 1% or so.
 
 Finally, do the second round of normalization to C=5
 
@@ -28,7 +28,7 @@ Finally, do the second round of normalization to C=5
 
    /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 5 -k 20 -N 4 -x 1e8 -o ecoli_ref.fq.keep.abundfilt.keep ecoli_ref.fq.keep.abundfilt
 
-(wait a while...) ...this will get rid of another 75%, leaving under 400,000 sequences of the original 5m.
+(wait a while...) ...this will get rid of another 70%, around 400,000 sequences of the original 5m.
 
 And voila – the sequences to assemble are in ‘ecoli_ref.fq.keep.abundfilt.keep’, in FASTA format. See Short Read Assembly with Velvet.
 
@@ -37,8 +37,8 @@ And voila – the sequences to assemble are in ‘ecoli_ref.fq.keep.abundfilt.ke
 
 ::
 
-   jellyfish count -m 25 -s 200M -t 8 -C -o trim2-D.jf ecoli_ref.fq.gz.keep.abundfilt.keep
-   jellyfish histo trim2-D.jf -o trim2.histo
+   jellyfish count -m 25 -s 200M -t 8 -C -o ecoli_ref.D.jf ecoli_ref.fq.keep.abundfilt.keep
+   jellyfish histo ecoli_ref.D.jf -o ecoli_ref.D.histo
 
 
 
