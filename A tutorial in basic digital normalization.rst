@@ -10,7 +10,7 @@ First, do a first round of digital normalization to C=20
 
    mkdir Assembly/diginorm
    cd Assembly/diginorm
-   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 20 -k 20 -N 4 -x 2.5e8 -p --savegraph ecoli_ref.kh -o ecoli_ref.fq.keep ../trimming/combined.fq
+   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 20 -k 20 -N 4 -x 2.5e8 -p --savegraph ecoli_ref.kh -o ecoli_ref.fq.keep ../trimming/ecoli_ref-5m.trimmed.fq
  
 (wait a while...) ...this should eliminate about 2/3 of the data.
  
