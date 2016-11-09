@@ -3,19 +3,17 @@ Quality Trimming
 ================================================
 
 During this lab, we will acquaint ourselves with the software packages
-Trimmomatic, khmer, FastQC and FASTX Toolkit. Your objectives are:
+Trimmomatic, khmer and FastQC. Your objectives are:
 
 1. Familiarize yourself with software, how to execute it and optionally how to
    visualize results.
 2. Characterize sequence quality.
 
-The Trimmomatoc manual: http://www.usadellab.org/cms/?page=trimmomatic
+The cutadap manual: http://cutadapt.readthedocs.io/en/stable/index.html
 
 The Khmer webpage: http://khmer.readthedocs.org/en/v2.0/
 
 The FastQC webpage: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
-
-The FASTX Toolkit webpage: http://hannonlab.cshl.edu/fastx_toolkit/commandline.html
 
 --------------
 
@@ -81,31 +79,46 @@ BONUS!! Assuming the genome is 4.5 Mbp, what is the depth of coverage?
 
 **Eliminate illumina adapters from your sequences**
 
+
 ::
 	
    cd ../
    mkdir trimming
    cd trimming
 
-   #paste the below lines together as 1 command
+Split reads
 
-   trimmomatic PE \
-   -threads 8 \
-   ../reads/ecoli_ref-5m_s1.fq \
-   ../reads/ecoli_ref-5m_s2.fq \
-   s1_pe s1_se s2_pe s2_se \
-   ILLUMINACLIP:../reads/illuminaClipping.fa:2:30:10 \
-   LEADING:3 \
-   TRAILING:3 \
-   SLIDINGWINDOW:4:15 \
-   MINLEN:50 
+::
+
+   #paste the below lines together as 1 command
+   
+   cutadapt \
+            --max-n 0 --minimum-length 50 -q 3,3 \
+            -a GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG \
+            -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+            -o ecoli_ref-5m.1.trimmed.fq -p ecoli_ref-5m.2.trimmed.fq \
+            ../reads/ecoli_ref-5m_s1.fq ../reads/ecoli_ref-5m_s2.fq
+
+Interleaved reads
+
+::
+
+   cutadapt \
+           --max-n 0 --minimum-length 50 -q 3 \
+           -a GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG \
+           -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+           -o ecoli_ref-5m.trimmed.fq ../reads/ecoli_ref-5m.fastq.gz
+	   
 --------------
 
 **Look at data quality using FastQC**:
 
 ::
 
-   fastqc s1_* s2_* 
+   mkdir ../fastqc
+   fastqc ../reads/*.fq -o ../fastqc
+   fastqc *.fq -o ../fastqc
+   
 
 Go check it out on your computer. Open up a new terminal window using the buttons command-t
 
