@@ -30,14 +30,14 @@ Finally, do the second round of normalization to C=5
 
 (wait a while...) ...this will get rid of another 70%, around 400,000 sequences of the original 5m.
 
-And voila – the sequences to assemble are in ‘ecoli_ref.fq.keep.abundfilt.keep’, in FASTA format. See Short Read Assembly with Velvet.
+And voila – the sequences to assemble are in ‘ecoli_ref-5m.D.fq’, in FASTA format. See Short Read Assembly with Velvet.
 
 
 **Run jellyfish on normalized data**
 
 ::
 
-   jellyfish count -m 25 -s 200M -t 8 -C -o ../jelly/ecoli_ref.D.jf ecoli_ref.fq.keep.abundfilt.keep
+   jellyfish count -m 25 -s 200M -t 8 -C -o ../jelly/ecoli_ref.D.jf ecoli_ref-5m.D.fq
    cd ../jelly
    jellyfish histo ecoli_ref.D.jf -o ecoli_ref.D.histo
 
