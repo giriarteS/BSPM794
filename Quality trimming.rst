@@ -129,7 +129,7 @@ Interleaved reads
 ::
 
    cutadapt \
-           --interleaved
+           --interleaved \
 	   --max-n 0 --minimum-length 50 -q 3 \
            -a GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG \
            -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
