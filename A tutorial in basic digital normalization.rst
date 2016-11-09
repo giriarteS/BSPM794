@@ -63,11 +63,8 @@ Plot differences between non-unique kmers
 
 ::
 
-   plot(ecoli_raw$V2[2:30] - ecoli_trim$V2[2:30], type='l',
-   xlim=c(2,20), xaxs="i", yaxs="i", frame.plot=F,
-   ylim=c(0,2000000), col='red', xlab='kmer frequency',
+   plot(ecoli_raw$V2[2:300] - ecoli_trim$V2[2:300], type='l',
+   xlim=c(2,300), xaxs="i", yaxs="i", frame.plot=F,
+   ylim=c(60000,65000), col='red', xlab='kmer frequency',
    lwd=4, ylab='count',
-   main='Diff in 25mer counts of freq 2 to 30 \n raw vs. trimmed')
-
-
-
+   main='Diff in 25mer counts of freq 2 to 300 \n raw vs. trimmed')
