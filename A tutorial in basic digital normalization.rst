@@ -10,7 +10,7 @@ First, do a first round of digital normalization to C=20
 
    mkdir Assembly/diginorm
    cd Assembly/diginorm
-   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 20 -k 20 -N 4 -x 2.5e8 -p --savegraph ecoli_ref.kh -o ecoli_ref.fq.keep ../trimming/ecoli_ref-5m.trimmed.fq
+   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 20 -k 20 -N 4 -x 2.5e8 -p --savegraph ecoli_ref.kh -o ecoli_ref.fq.keep ../trimming/ecoli_ref-5m.trim.fq
  
 (wait a while...) ...this should eliminate about 2/3 of the data.
  
@@ -26,7 +26,7 @@ Finally, do the second round of normalization to C=5
 
 ::
 
-   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 5 -k 20 -N 4 -x 1e8 -o ecoli_ref.fq.keep.abundfilt.keep ecoli_ref.fq.keep.abundfilt
+   /Users/BrodersLab/khmerEnv/bin/normalize-by-median.py -C 5 -k 20 -N 4 -x 1e8 -o ecoli_ref-5m.D.fq ecoli_ref.fq.keep.abundfilt
 
 (wait a while...) ...this will get rid of another 70%, around 400,000 sequences of the original 5m.
 
