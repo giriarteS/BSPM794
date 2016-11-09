@@ -120,7 +120,7 @@ Interleaved reads
    fastqc *.fq -o ../fastqc
    
 
-Go check it out on your computer. Open up a new terminal window using the buttons command-t
+Go check it out on your computer. Open up a new terminal window using the buttons command-t. What does the FastQC report tell you? 
 
 ::
 
