@@ -130,7 +130,7 @@ Interleaved reads
 
    cutadapt \
            --interleaved \
-	   --max-n 0 --minimum-length 50 -q 3 \
+	   -q 3 --max-n 0 --minimum-length 50 \
            -a GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG \
            -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
            -o ecoli_ref-5m.trim.fq ../reads/ecoli_ref-5m.fastq.gz
