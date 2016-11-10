@@ -159,6 +159,6 @@ Now, we want to interleave the reads again:
 
 ::
 
-   /Users/BrodersLab/khmerEnv/bin/interleave-reads.py s1_pe s2_pe > combined.fq 
+   /Users/BrodersLab/khmerEnv/bin/interleave-reads.py ecoli_ref-5m.1.trim.fq ecoli_ref-5m.2.trim.fq > combined.fq 
     
 	
