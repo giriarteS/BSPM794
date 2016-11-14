@@ -24,16 +24,27 @@ Now... assemble the small, fast data sets, using the Velvet assembler.  Here
 we will set the required parameter k=21::
 
    cd Assembly
-   velveth ecoli.21 21 -shortPaired -fastq ecoli_ref-5m.D.fq
+   velveth ecoli.21 21 -shortPaired -fastq diginorm/ecoli_ref-5m.D.fq
    velvetg ecoli.21 -exp_cov auto
 
 Also try assembling with k=23 and k=25::
 
-   velveth ecoli.23 23 -shortPaired -fastq ecoli_ref-5m.D.fq
+   velveth ecoli.23 23 -shortPaired -fastq diginorm/ecoli_ref-5m.D.fq
    velvetg ecoli.23 -exp_cov auto
 
-   velveth ecoli.25 25 -shortPaired -fastq ecoli_ref-5m.D.fq
+   velveth ecoli.25 25 -shortPaired -fastq diginorm/ecoli_ref-5m.D.fq
    velvetg ecoli.25 -exp_cov auto
+
+Find the best assembly for Illumina paired end reads, trying k-values between 21 and 31:
+
+::
+
+VelvetOptimiser.pl -s 21 -e 31 -f '-shortPaired -fastq diginorm/ecoli_ref-5m.D.fq' -g 4.5 -t 8 --optFuncKmer 'n50'
+
+
+
+
+
 
 Now check out the stats for the assembled contigs for a cutoff of 1000 (minimum contig length = 1000)::
 
