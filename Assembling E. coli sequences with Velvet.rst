@@ -35,3 +35,18 @@ Also try assembling with k=23 and k=25::
    velveth ecoli.25 25 -shortPaired -fastq ecoli_ref-5m.D.fq
    velvetg ecoli.25 -exp_cov auto
 
+Now check out the stats for the assembled contigs for a cutoff of 1000 (minimum contig length = 1000)::
+
+   /Users/BrodersLab/khmerEnv/sandbox/assemstats3.py 1000 ecoli.*/contigs.fa
+  
+Comparing and evaluating assemblies - QUAST
+===========================================
+
+Download the true reference genome::
+
+   curl -O https://s3.amazonaws.com/public.ged.msu.edu/ecoliMG1655.fa.gz
+   gunzip ecoliMG1655.fa.gz
+
+and run QUAST::   
+
+   
