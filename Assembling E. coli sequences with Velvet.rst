@@ -67,7 +67,7 @@ and run QUAST::
    
 Note that here we're looking at *all* the assemblies we've generated.
 
-Now look at the results. A description of the output can be found on the QUAST web site: <http://quast.bioinf.spbau.ru/manual.html>`__.::
+Now look at the results. A description of the output can be found on the `QUAST web site <http://quast.bioinf.spbau.ru/manual.html>`__.
 
    more quast_results/latest/report.txt
 
