@@ -35,16 +35,19 @@ Also try assembling with k=23 and k=25::
    velveth ecoli.25 25 -shortPaired -fastq diginorm/ecoli_ref-5m.D.fq
    velvetg ecoli.25 -exp_cov auto
 
-Find the best assembly for Illumina paired end reads, trying k-values between 21 and 31:
+Find the best assembly for Illumina paired end reads, trying k-values between 21 and 31::
 
-::
+VelvetOptimiser.pl -s 21 -e 31 -f '-shortPaired -fastq diginorm/ecoli_ref-5m.D.fq'
 
-VelvetOptimiser.pl -s 21 -e 31 -f '-shortPaired -fastq diginorm/ecoli_ref-5m.D.fq' -g 4.5 -t 8 --optFuncKmer 'n50'
+Print an estimate of how much RAM is needed by the above command, if we use eight threads at once,
+and we estimate our assembled genome to be 4.5 megabases long::
 
+VelvetOptimiser.pl -s 21 -e 31 -f '-shortPaired -fastq diginorm/ecoli_ref-5m.D.fq' -g 4.5 -t 8
 
+Find the best assembly for Illumina paired end reads just for k=31, using four threads, 
+but optimizing for N50 for k-mer length rather than sum of large contig sizes::
 
-
-
+VelvetOptimiser.pl -s 29 -e 29 -f '-shortPaired -fastq diginorm/ecoli_ref-5m.D.fq' -t 4 --optFuncKmer 'n50'
 
 Now check out the stats for the assembled contigs for a cutoff of 1000 (minimum contig length = 1000)::
 
