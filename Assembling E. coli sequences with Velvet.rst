@@ -65,3 +65,32 @@ and run QUAST::
 
    quast.py -R ecoliMG1655.fa ecoli.*/contigs.fa
    
+Note that here we're looking at *all* the assemblies we've generated.
+
+Now look at the results. A description of the output can be found on the QUAST web site: <http://quast.bioinf.spbau.ru/manual.html>`__.::
+
+   more quast_results/latest/report.txt
+
+The first bits to look at are Genome fraction (%) and # misassembled contigs,
+I think.
+
+Searching assemblies -- BLAST
+=============================
+
+Build BLAST databases for the assemblies you've done::
+
+   for i in 21 23 25 29
+   do
+      extract-long-sequences.py -o ecoli-$i.fa -l 1000 ecoli.$i/contigs.fa
+      formatdb -i ecoli-$i.fa -o T -p F
+   done
+
+and then let's search for a specific gene -- first, download a file containing
+your protein sequence of interest::
+
+   wget http://athyra.idyll.org/~t/crp.fa
+
+and now search::
+
+   blastall -i crp.fa -d ecoli-21.fa -p tblastn -b 1 -v 1
+
