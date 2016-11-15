@@ -71,8 +71,10 @@ Now look at the results. A description of the output can be found on the `QUAST 
 
    more quast_results/latest/report.txt
 
-The first bits to look at are Genome fraction (%) and # misassembled contigs,
-I think.
+How many large / small misassemblies were made by the assembler?
+
+What is the actual genome coverage?
+
 
 Searching assemblies -- BLAST
 =============================
