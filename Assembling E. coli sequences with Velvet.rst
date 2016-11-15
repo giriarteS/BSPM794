@@ -60,4 +60,5 @@ Download the true reference genome::
 
 and run QUAST::   
 
+   quast.py -R ecoliMG1655.fa ecoli.*/contigs.fa
    
