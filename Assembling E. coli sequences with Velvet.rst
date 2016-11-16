@@ -53,7 +53,7 @@ and we estimate our assembled genome to be 4.5 megabases long::
 
 Now check out the stats for the assembled contigs for a cutoff of 1000 (minimum contig length = 1000)::
 
-   /Users/BrodersLab/khmerEnv/sandbox/assemstats3.py 1000 ecoli.*/contigs.fa
+   /Users/BrodersLab/khmerEnv/sandbox/assemstats3.py 1000 ecoli*/contigs.fa
   
 Comparing and evaluating assemblies - QUAST
 ===========================================
