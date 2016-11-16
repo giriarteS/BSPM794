@@ -117,8 +117,7 @@ Once you have installed Mauve and located your reference genome and contigs, we 
 
 6. Click the ‘Add Sequence...’ button again and navigate to the fasta file of the contigs you wish to align, ‘contigs.fa’ from the assembly exercise above (ecoli.29). Check that you have put the reference genome first, and the draft second, as expected by Mauve.
 
-7. Click ‘Start’ to run the reordering. A new window should appear marked ‘Mauve Console’ where the progress of the run will be displayed, including any error messages (see below for an example). A new window of the visualization tool should launch for each completed iteration, marked ‘Mauve unknown – alignmentX’, where X is the iteration number.
-If you encounter errors, check that you have specified the right files for input – they should be fasta or multi-fasta sequence files.
+7. Click ‘Start’ to run the reordering. A new window should appear marked ‘Mauve Console’ where the progress of the run will be displayed, including any error messages (see below for an example). A new window of the visualization tool should launch for each completed iteration, marked ‘Mauve unknown – alignmentX’, where X is the iteration number. If you encounter errors, check that you have specified the right files for input – they should be fasta or multi-fasta sequence files.
 
 8. Finally, a message telling you the reorder is completed should appear. Hit ‘OK’ and quit Mauve – though you can inspect the final alignment (and the others) beforehand.
 
