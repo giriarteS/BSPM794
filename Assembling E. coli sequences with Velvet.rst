@@ -123,8 +123,8 @@ Once you have installed Mauve and located your reference genome and contigs, we 
 
 9. The final set of ordered and oriented contigs are in the fasta file located in the last of the iterated alignments. To find it, look in the ‘MauveOutput’ folder created above. For each iteration of the reordering there will be an output folder, so the final output is the contig file located in the subdirectory ‘alignmentX’ with the highest X, where X is the iteration number. Rename ‘contigs.fa’ in this subdirectory, to ‘ecoli.29.ordered.M.fasta’ and copy it to your main working directory (i.e. the one with the original sequence files, make sure you have changed the name of the ordered contigs file first as we will use the unordered contigs in a later exercise, e.g. ‘contigs.fa’. You can then delete the ‘alignmentX’ folders.
 
-Ordering contigs against a reference using Mauve
-================================================
+Ordering contigs against a reference using abacas
+=================================================
 
 Those who are used to Unix and sequence analysis may prefer to use a command-line based solution for ordering contigs. We recommend Abacas, which requires installation of MUMmer (http://mummer.sourceforge.net/), Perl and BioPerl.
 
