@@ -65,6 +65,7 @@ Download the true reference genome::
 
 and run QUAST::   
 
+
    quast.py -R ecoliMG1655.fa ecoli.*/contigs.fa
    
 Note that here we're looking at *all* the assemblies we've generated.
@@ -126,7 +127,9 @@ Once you have installed Mauve and located your reference genome and contigs, we 
 Ordering contigs against a reference using abacas
 =================================================
 
-Those who are used to Unix and sequence analysis may prefer to use a command-line based solution for ordering contigs. We recommend Abacas, which requires installation of MUMmer (http://mummer.sourceforge.net/), Perl and BioPerl.
+Those who are used to Unix and sequence analysis may prefer to use a command-line based solution for ordering contigs. We recommend Abacas, which requires installation of `MUMmer <http://mummer.sourceforge.net/>`__, Perl and BioPerl.
+
+::
 
    abacas.1.3.1.pl –r ecoliMG1655.fa -q ecoli_data_29/contigs.fa –p ‘nucmer’ –c –m –b –o ecoli.29.ordered.A.fasta
 
