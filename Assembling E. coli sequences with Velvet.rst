@@ -25,7 +25,7 @@ Note that a maximum k-mer of 41 will be sufficient for this exercise, but longer
    cd Assembly
    velveth ecoli.21 21 -shortPaired -fastq diginorm/ecoli_ref-5m.D.fq 
 
-This will take ~1-2 minutes and will produce a hash table of the reads using the specified k-mer length (k=21), saving them to the folder ‘ecoli.21’. The –shortPaired and fastq tag tells Velvet we are supplying short, paired end interleaved reads in fastq format. See manual for other input options. The next Velvet step to run is velvetg to build the graph. Enter:
+This will take ~1-2 minutes and will produce a hash table of the reads using the specified k-mer length (k=21), saving them to the folder ‘ecoli.21’. The –shortPaired and fastq tag tells Velvet we are supplying short, paired end interleaved reads in fastq format. See manual for other input options. The next Velvet step to run is velvetg to build the graph. Enter::
 
    velvetg ecoli.21 -clean yes -exp_cov 5 -cov_cutoff 1.89 -min_contig_lgth 200
 
@@ -66,7 +66,7 @@ Download the true reference genome::
 and run QUAST::   
 
 
-   quast.py -R ecoliMG1655.fa ecoli.*/contigs.fa
+   quast.py -R ecoliMG1655.fa ecoli*/contigs.fa
    
 Note that here we're looking at *all* the assemblies we've generated.
 
