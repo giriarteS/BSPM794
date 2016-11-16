@@ -97,4 +97,38 @@ your protein sequence of interest::
 and now search::
 
    blastall -i crp.fa -d ecoli-21.fa -p tblastn -b 1 -v 1
+   
+Ordering contigs against a reference using Mauve
+================================================
 
+Once the sequence reads have been assembled into contigs, it is useful to order them against a suitable reference genome. One simple way to accomplish this is to use the ‘Move Contigs’ option available in `Mauve <http://asap.ahabs.wisc.edu/mauve/>`__.
+
+Once you have installed Mauve and located your reference genome and contigs, we can order the contigs.
+
+1. Launch the Mauve application.
+
+2. From the Tools menu, select ‘Move Contigs’.
+
+3. A dialogue box should appear, with a box labelled ‘Choose location to keep output files and folders’. Navigate to the folder with the sequences and the copied contigs, then click the ‘Create New Folder’ radio button. Give this folder a suitable name, e.g. ‘MauveOutput’ and then hit ‘OK’.
+
+4. A message should appear telling you about the iterative process involved in reordering the contigs. Take note of it, then hit ‘OK’ to dismiss it.
+
+5. A dialogue box should appear, with a box labelled ‘Align and Reorder Contigs’. Click the button below the box ‘Add Sequence...’ and navigate to the reference genome to align against, in this case ‘ecoliMG1655.fa’.
+
+6. Click the ‘Add Sequence...’ button again and navigate to the fasta file of the contigs you wish to align, ‘contigs.fa’ from the assembly exercise above (ecoli.29). Check that you have put the reference genome first, and the draft second, as expected by Mauve.
+
+7. Click ‘Start’ to run the reordering. A new window should appear marked ‘Mauve Console’ where the progress of the run will be displayed, including any error messages (see below for an example). A new window of the visualization tool should launch for each completed iteration, marked ‘Mauve unknown – alignmentX’, where X is the iteration number.
+If you encounter errors, check that you have specified the right files for input – they should be fasta or multi-fasta sequence files.
+
+8. Finally, a message telling you the reorder is completed should appear. Hit ‘OK’ and quit Mauve – though you can inspect the final alignment (and the others) beforehand.
+
+9. The final set of ordered and oriented contigs are in the fasta file located in the last of the iterated alignments. To find it, look in the ‘MauveOutput’ folder created above. For each iteration of the reordering there will be an output folder, so the final output is the contig file located in the subdirectory ‘alignmentX’ with the highest X, where X is the iteration number. Rename ‘contigs.fa’ in this subdirectory, to ‘ecoli.29.ordered.M.fasta’ and copy it to your main working directory (i.e. the one with the original sequence files, make sure you have changed the name of the ordered contigs file first as we will use the unordered contigs in a later exercise, e.g. ‘contigs.fa’. You can then delete the ‘alignmentX’ folders.
+
+Ordering contigs against a reference using Mauve
+================================================
+
+Those who are used to Unix and sequence analysis may prefer to use a command-line based solution for ordering contigs. We recommend Abacas, which requires installation of MUMmer (http://mummer.sourceforge.net/), Perl and BioPerl.
+
+   abacas.1.3.1.pl –r ecoliMG1655.fa -q ecoli_data_29/contigs.fa –p ‘nucmer’ –c –m –b –o ecoli.29.ordered.A.fasta
+
+Using either method, you should end up with a set of contigs ordered against the reference strain in multi-fasta format in a file called ‘ecoli.29.ordered.A.fasta’. This is the file to use for the following steps.
